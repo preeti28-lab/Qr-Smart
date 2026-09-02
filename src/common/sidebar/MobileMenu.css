@@ -1,0 +1,7 @@
+.custom-menu .ant-menu-submenu-title {
+  transition: background-color 0.3s ease;
+}
+
+.custom-menu .ant-menu-submenu-title:hover {
+  background-color: #f1f5f9  !important; /* Soft blue hover effect */
+}

@@ -1,0 +1,58 @@
+$gray-color: #bdbdbd !important;
+$slate-color: #525252 !important;
+$hover-color: #616161 !important;
+$blue-color: #1976d2 !important;
+
+.multi-select {
+    .ant-select-selector {
+        border: 2px solid $gray-color;
+        border-radius: 100px !important;
+        padding: 3px 10px !important;
+        box-shadow: none !important;
+
+        .ant-select-selection-wrap {
+            .ant-select-selection-placeholder {
+                font-weight: 600 !important;
+                color: $slate-color;
+            }
+        }
+    }
+
+    .ant-select-selector:hover {
+        border: 2px solid $hover-color;
+    }
+
+    .ant-select-arrow {
+        color: $slate-color;
+    }
+}
+
+.my-select-field {
+    .ant-select-selector {
+        border: 2px solid $gray-color;
+        border-radius: 100px !important;
+        padding: 20px 20px !important;
+        box-shadow: none !important;
+
+        .ant-select-selection-wrap {
+            .ant-select-selection-placeholder, .ant-select-selection-item {
+                font-weight: 600 !important;
+                color: $slate-color;
+            }
+        }
+    }
+
+    .ant-select-selector:hover {
+        border: 2px solid $hover-color;
+    }
+
+    .ant-select-selector:focus-within {
+        border: 2px solid $blue-color;
+    }
+
+    .ant-select-arrow {
+        margin-top: 0px;
+        margin-right: 10px;
+        color: $slate-color;
+    }
+}

@@ -1,0 +1,67 @@
+$color-black: #141414 !important;
+$color-black-2: #3d3d3d !important;
+
+$gray-color: #bdbdbd !important;
+$slate-color: #525252 !important;
+$hover-color: #616161 !important;
+$blue-color: #1976d2 !important;
+
+.my-date {
+    width: 100%;
+
+    div.ant-picker {
+        border-color: $color-black;
+        border-radius: 40px !important;
+        padding: 10px 20px !important;
+        width: 100%;
+
+        .ant-picker-input {
+            input {
+                font-weight: 600 !important;
+            }
+
+            input::placeholder {
+                color: $color-black-2;
+                font-weight: 500 !important;
+            }
+
+            .ant-picker-suffix {
+                color: $color-black;
+            }
+        }
+    }
+}
+
+.my-date-2 {
+    width: 100%;
+
+    div.ant-picker {
+        border: 2px solid $gray-color;
+        border-radius: 40px !important;
+        padding: 10px 20px !important;
+        width: 100%;
+
+        .ant-picker-input {
+            input {
+                font-weight: 600 !important;
+            }
+
+            input::placeholder {
+                color: $color-black-2;
+                font-weight: 500 !important;
+            }
+
+            .ant-picker-suffix {
+                color: $color-black;
+            }
+        }
+    }
+
+    div.ant-picker:hover {
+        border: 2px solid $hover-color;
+    }
+
+    div.ant-picker:focus-within {
+        border: 2px solid $blue-color;
+    }
+}

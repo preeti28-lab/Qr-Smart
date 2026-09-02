@@ -1,0 +1,48 @@
+$black-color: #131313;
+$black-color-2: #1d1d1d;
+$black-color-3: #646464;
+
+.menu-custom {
+    li {
+        border-radius: 0px !important;
+        border-bottom: 1px solid $black-color-3;
+        border-inline-end: none !important;
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+
+        .ant-menu-submenu-title {
+            padding: 0px !important;
+
+            .ant-menu-title-content {
+                font-weight: 600;
+                font-size: 17px;
+                color: $black-color !important;
+            }
+
+            .ant-menu-submenu-arrow {
+                color: $black-color !important;
+                width: 0px !important;
+            }
+        }
+
+        li {
+            border: none !important;
+            background: transparent !important;
+            padding: 0px !important;
+            font-weight: 500;
+            color: $black-color-2 !important;
+            white-space: normal !important; /* Allow text to wrap */
+            overflow: visible !important;  /* Prevent text truncation */
+            text-overflow: unset !important; /* Remove "..." truncation */
+            line-height: 1.5 !important; /* Reduce the space between lines */
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+    }
+
+    border-inline-end: none !important;
+
+    div {
+        background: transparent !important;
+    }
+}

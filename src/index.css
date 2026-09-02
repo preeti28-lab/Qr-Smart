@@ -1,0 +1,169 @@
+/* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
+/* Tailwind's base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.qr-logo {
+  font-family: "Dancing Script" !important;
+  font-weight: 800;
+}
+/* fonts */
+.font-poppins {
+  font-family: "Source Sans 3", serif;
+  font-style: normal;
+}
+
+
+
+.font-montserrat {
+  font-family: "Source Sans 3", serif;
+  font-style: normal;
+}
+
+* {
+  font-family: "Assistant", sans-serif !important;
+  /* scroll-behavior: smooth; */
+}
+
+:root {
+  --main-gradient: linear-gradient(320deg, #00237d, #e2282b);
+  --default-gradient: linear-gradient(320deg, #00237d, #e2282b);
+  --sgps-gradient: linear-gradient(131.35deg, #104cd9 0%, #002273 100%);
+  --mgr-gradient: linear-gradient(130.7deg, #07c0ff 0%, #f8010b 100%);
+  --sans-gradient: linear-gradient(to right, #17ab12, #3cc337, #065604);
+  --main-black: linear-gradient(
+    170.56deg,
+    #313131,
+    #292929 22.61%,
+    #161616 54.08%,
+    #000
+  );
+}
+
+.main-bg {
+  background: var(--sgps-gradient);
+}
+
+/* border */
+.main-border {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(#252525, #252525) padding-box,
+    var(--sgps-gradient) border-box;
+}
+
+.main-black-bg {
+  background: var(--main-black);
+}
+
+.main-border-hover:hover {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background:
+    linear-gradient(#252525, #252525) padding-box,
+    var(--sgps-gradient) border-box;
+}
+
+.main-text {
+  font-family: "Source Sans 3", serif;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+/* scroll */
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Narrower scrollbar width */
+  height: 6px; /* Narrower scrollbar height for horizontal scrolling */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 8px; /* Rounded edges */
+  /* Optionally remove border for a tighter look */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* select */
+.ant-select-item-option-active {
+  background-color: #dfdfdf !important;
+}
+
+.all-temp .qr-container canvas {
+  width: 150px !important;
+  height: 150px !important;
+}
+.all-temp .qr-container {
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.qr-float-btn .ant-float-btn-body {
+  background: linear-gradient(131.35deg, #104cd9 0%, #002273 100%) !important;
+}
+
+input[disabled] {
+  /* cursor:; */
+  cursor: not-allowed;
+  background-color: #eceff1 !important;
+}
+
+@media only screen and (max-width: 900px) {
+  .dynamic-qr-show {
+    display: none !important;
+  }
+  .dynamic-grids {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .hide-in-desktop {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dynamic-grids {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+  .ant-steps-item-content,
+  .hide-in-mobile {
+    display: none !important;
+  }
+  .ant-steps-item {
+    max-width: 40px !important;
+  }
+  :where(.css-dev-only-do-not-override-nqoqt9).ant-steps.ant-steps-vertical {
+    flex-direction: row;
+  }
+  .qr-float-btn {
+    display: block;
+  }
+}
+
+.bulkclass .mb-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
