@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SectionHeading from "../../components/ui/SectionHeading";
-import HoverButton from "../../components/buttons/HoverButton";
 import { useNavigate } from "react-router-dom";
 
 import step1img from "../../assets/images/step1.webp";
@@ -166,62 +165,43 @@ function StepCard({ step, isActive, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="relative flex flex-col cursor-pointer group"
+      className="relative flex flex-col cursor-pointer group pt-3"
     >
-      {/* Step Label */}
-      <div className="flex items-center gap-3 mb-5">
+      {/* Card */}
+      <div
+        className="relative rounded-2xl border bg-white p-4 pt-7 flex flex-col gap-4 h-full transition-all duration-500"
+        style={{
+          borderColor: isActive ? "#bfdbfe" : "#e2e8f0",
+          boxShadow: isActive
+            ? `0 20px 45px -18px ${theme.accent}40`
+            : "0 1px 2px rgba(15,23,42,0.04)",
+        }}
+      >
+        {/* Step Label — sits on the card's top edge */}
         <span
-          className="text-[11px] font-bold tracking-[0.15em] uppercase px-2.5 py-1 rounded-full transition-all duration-300"
+          className="absolute -top-3 left-5 text-[10px] font-bold tracking-[0.15em] uppercase px-2.5 py-1 rounded-md transition-all duration-300"
           style={{
-            backgroundColor: isActive ? theme.accent : "#f1f5f9",
-            color: isActive ? "#fff" : "#94a3b8",
+            backgroundColor: isActive ? theme.accent : "#94a3b8",
+            color: "#fff",
           }}
         >
           Step {step.number}
         </span>
-        <div className="flex-1 h-px bg-slate-100" />
-      </div>
 
-      {/* Card */}
-      <div
-        className="relative rounded-3xl p-3 flex flex-col gap-5 transition-all duration-500 overflow-hidden"
-        style={{
-          backgroundColor: isActive ? theme.lightBg : "#f8fafc",
-          boxShadow: isActive
-            ? `0 20px 60px -10px ${theme.accent}25, 0 4px 16px -4px ${theme.accent}15`
-            : "none",
-          transform: isActive ? "translateY(-4px)" : "translateY(0)",
-        }}
-      >
-        {/* Decorative circle */}
+        {/* Illustration */}
         <div
-          className="absolute -top-8 -right-8 w-32 h-32 rounded-full transition-opacity duration-500"
-          style={{
-            backgroundColor: theme.accent,
-            opacity: isActive ? 0.07 : 0,
-          }}
-        />
-
-        {/* Icon */}
-        <div
-          className="rounded-2xl flex items-center justify-center transition-all duration-300"
-          style={{ backgroundColor: isActive ? theme.iconBg : "#f1f5f9" }}
+          className="rounded-xl flex items-center justify-center overflow-hidden transition-all duration-300 bg-gradient-to-b from-[#eef4ff] to-[#f8fbff]"
+          style={{ borderColor: isActive ? theme.iconBg : "#f1f5f9" }}
         >
-          <img src={step.imageLink} className="w-full" />
-          {step.icon}
+          <img src={step.imageLink} className="w-full" alt={step.title} />
         </div>
 
         {/* Text */}
-        <div>
-          <h3
-            className="text-lg font-bold mb-2 transition-colors duration-300"
-            style={{ color: isActive ? "#0f172a" : "#64748b" }}
-          >
+        <div className="flex-1">
+          <h3 className="text-[17px] font-bold mb-2 text-slate-900">
             {step.title}
           </h3>
-          <p className="text-sm leading-relaxed transition-all duration-300">
-            {step.desc}
-          </p>
+          <p className="text-sm leading-relaxed text-slate-500">{step.desc}</p>
         </div>
 
         {/* Bottom accent bar */}
@@ -245,15 +225,22 @@ export default function CreateQRSteps() {
   return (
     <section className="w-full max-w-5xl mx-auto px-4 py-20">
       {/* Heading */}
-      <div className="text-center mb-14">
+      <div className="text-center mb-12">
         <SectionHeading
           title="Create your QR code in 3 steps"
           highlight="3 steps"
         />
+
+        {/* Divider with dot */}
+        <div className="flex items-center justify-center gap-1.5 mt-4">
+          <span className="h-px w-10 bg-slate-200" />
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+          <span className="h-px w-10 bg-slate-200" />
+        </div>
       </div>
 
       {/* Steps */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
         {steps.map((step, i) => (
           <StepCard
             key={i}
@@ -268,10 +255,13 @@ export default function CreateQRSteps() {
 
       {/* CTA */}
 
-      <div className="flex justify-center mt-10">
-        <HoverButton onClick={() => navigate("/builder")}>
+      <div className="flex justify-center mt-12">
+        <button
+          onClick={() => navigate("/builder")}
+          className="px-7 py-3 rounded-full text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-200 active:scale-95 shadow-md shadow-blue-200"
+        >
           Create QR Code
-        </HoverButton>
+        </button>
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import HoverButton from "../../components/buttons/HoverButton";
 import { useNavigate } from "react-router-dom";
 import SectionHeading from "../../components/ui/SectionHeading";
 import Slider from "react-slick";
@@ -57,22 +56,31 @@ const StaticQRCodeCard = ({ title, description, icon: Icon, isActive }) => {
 
   return (
     <div
-      className={`h-full p-6 bg-white rounded-xl transition-all duration-300
-      ${isActive ? "border border-black shadow-md" : "border border-gray-200"}`}
+      className={`h-full p-6 bg-white rounded-2xl transition-all duration-300
+      ${
+        isActive
+          ? "border border-blue-200 shadow-[0_20px_45px_-24px_rgba(37,99,235,0.4)]"
+          : "border border-slate-200 shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-blue-200"
+      }`}
     >
       {/* Icon */}
-      <div className="text-3xl mb-4 text-blue-500 p-2 bg-gray-100 w-max rounded-lg">
+      <div className="text-2xl mb-5 text-blue-600 p-3 bg-blue-50 w-max rounded-xl">
         <Icon />
       </div>
 
-      <p className="font-semibold text-lg">{title}</p>
+      <p className="font-bold text-[17px] text-slate-900">{title}</p>
 
-      <p className="text-gray-600 text-[14px] min-h-[80px] mb-10 mt-5">
+      <p className="text-slate-500 text-[14px] leading-relaxed min-h-[80px] mb-8 mt-3">
         {description}
       </p>
 
-      <div className="flex flex-wrap items-center gap-2 md:gap-5 mt-4">
-        <HoverButton onClick={handleCreate}>Create QR Code</HoverButton>
+      <div className="flex flex-wrap items-center gap-2 md:gap-5">
+        <button
+          onClick={handleCreate}
+          className="px-6 py-3 rounded-full text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-200 active:scale-95 shadow-md shadow-blue-200"
+        >
+          Create QR Code
+        </button>
       </div>
     </div>
   );
@@ -86,14 +94,6 @@ const StaticQRCode = () => {
     <div className="container max-w-6xl mx-auto py-20 px-3">
       <SectionHeading title={"Static QR codes"} />
 
-      {/* LEFT ARROW */}
-      <button
-        onClick={() => sliderRef.current?.slickPrev()}
-        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 border border-slate-200 p-3 rounded-full bg-white hover:bg-slate-100 items-center justify-center"
-      >
-        <FaArrowLeft />
-      </button>
-
       {/* SLIDER */}
       <div className="py-6 ">
         <Slider ref={sliderRef} {...settings}>
@@ -105,13 +105,27 @@ const StaticQRCode = () => {
         </Slider>
       </div>
 
-      {/* RIGHT ARROW */}
-      <button
-        onClick={() => sliderRef.current?.slickNext()}
-        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 border border-slate-200 p-3 rounded-full bg-white hover:bg-slate-100 items-center justify-center"
-      >
-        <FaArrowRight />
-      </button>
+      {/* Bottom controls — matches the carousel controls used on the home page.
+          (Previously these were absolutely positioned but the wrapper wasn't a
+          positioning context, so they anchored to the page instead of the
+          slider.) */}
+      <div className="flex justify-center gap-3 mt-4">
+        <button
+          onClick={() => sliderRef.current?.slickPrev()}
+          aria-label="Previous slide"
+          className="border border-slate-200 p-3 rounded-full bg-white text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-colors duration-200"
+        >
+          <FaArrowLeft />
+        </button>
+
+        <button
+          onClick={() => sliderRef.current?.slickNext()}
+          aria-label="Next slide"
+          className="border border-slate-200 p-3 rounded-full bg-white text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-colors duration-200"
+        >
+          <FaArrowRight />
+        </button>
+      </div>
     </div>
   );
 };

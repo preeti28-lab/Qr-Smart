@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SectionHeading from "../../components/ui/SectionHeading";
-import HoverButton from "../../components/buttons/HoverButton";
 import { useSelector } from "react-redux";
 
 const features = [
@@ -316,17 +315,17 @@ function DetailVisual({ feature }) {
       </div>
 
       {/* Title */}
-      <h3 className="text-xl font-bold text-stone-800 text-center mb-2">
+      <h3 className="text-xl font-bold text-slate-900 text-center mb-2">
         {feature.title}
       </h3>
-      <p className="text-sm text-stone-500 text-center leading-relaxed max-w-xs">
+      <p className="text-sm text-slate-500 text-center leading-relaxed max-w-xs">
         {feature.desc}
       </p>
 
       {/* CTA */}
       <Link
         to={feature.href}
-        className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+        className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white shadow-md transition-opacity hover:opacity-90"
         style={{ backgroundColor: feature.accent }}
       >
         Explore feature
@@ -359,7 +358,8 @@ export default function FeaturesAccordion() {
   };
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-20">
+    <section className="w-full bg-gradient-to-b from-[#f7faff] to-white">
+      <div className="w-full max-w-6xl mx-auto px-4 py-20">
       {/* Header */}
       <div className="mb-14">
         <SectionHeading title="Your all-in-one marketing platform" />
@@ -368,22 +368,22 @@ export default function FeaturesAccordion() {
       {/* Main layout: list left + panel right */}
       <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* LEFT — Accordion list */}
-        <div className="w-full md:w-[52%] flex flex-col divide-y divide-stone-100">
+        <div className="w-full md:w-[52%] flex flex-col divide-y divide-slate-100 bg-white rounded-2xl border border-slate-200 shadow-[0_16px_40px_-28px_rgba(15,23,42,0.3)] overflow-hidden">
           {features.map((f) => {
             const isActive = active === f.id;
             return (
               <button
                 key={f.id}
                 onClick={() => setActive(f.id)}
-                className={`w-full text-left flex items-start gap-4 px-4 py-4 rounded-xl transition-all duration-200 group
-                  ${isActive ? "bg-white shadow-sm" : "hover:bg-stone-50"}`}
+                className={`w-full text-left flex items-start gap-4 px-4 py-4 transition-all duration-200 group
+                  ${isActive ? "bg-blue-50/40" : "hover:bg-slate-50"}`}
               >
                 {/* Icon */}
                 <div
                   className="mt-0.5 w-9 h-9 rounded-xl flex-shrink-0 flex items-center justify-center transition-all duration-200"
                   style={{
-                    backgroundColor: isActive ? f.accent : "#f5f5f4",
-                    color: isActive ? "#fff" : "#a8a29e",
+                    backgroundColor: isActive ? f.accent : f.lightBg,
+                    color: isActive ? "#fff" : f.accent,
                   }}
                 >
                   {f.icon}
@@ -393,21 +393,21 @@ export default function FeaturesAccordion() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <span
-                      className={`text-md font-semibold transition-colors duration-200 ${
+                      className={`text-[15px] font-bold transition-colors duration-200 ${
                         isActive
-                          ? "text-stone-900"
-                          : "text-stone-600 group-hover:text-stone-800"
+                          ? "text-slate-900"
+                          : "text-slate-700 group-hover:text-slate-900"
                       }`}
                     >
                       {f.title}
                     </span>
                     <span
-                      className={`text-[12px] font-semibold px-2 py-0.5 rounded-full ${f.tagColor}`}
+                      className={`text-[11px] font-semibold px-2 py-0.5 rounded-md ${f.tagColor}`}
                     >
                       {f.tag}
                     </span>
                   </div>
-                  <p className="text-sm text-stone-400 leading-relaxed">
+                  <p className="text-[13px] text-slate-400 leading-relaxed">
                     {f.short}
                   </p>
 
@@ -478,8 +478,14 @@ export default function FeaturesAccordion() {
         </div>
       </div>
 
-      <div className="flex justify-center mt-10">
-        <HoverButton onClick={handleCreate}>Create QR Code</HoverButton>
+      <div className="flex justify-center mt-12">
+        <button
+          onClick={handleCreate}
+          className="px-7 py-3 rounded-full text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-200 active:scale-95 shadow-md shadow-blue-200"
+        >
+          Create QR Code
+        </button>
+      </div>
       </div>
     </section>
   );

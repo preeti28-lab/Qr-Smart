@@ -28,19 +28,34 @@ const HomeFaq = () => {
   };
 
   return (
-    <section className="py-20">
-      <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-[#f3f7ff] via-[#f8fbff] to-white">
+      {/* ── Decorative background ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="hidden md:block absolute left-6 top-16 w-24 h-32 opacity-40"
+          style={{
+            backgroundImage: "radial-gradient(#bfdbfe 1.6px, transparent 1.6px)",
+            backgroundSize: "13px 13px",
+          }}
+        />
+        <div
+          className="hidden md:block absolute right-6 top-1/3 w-24 h-32 opacity-40"
+          style={{
+            backgroundImage: "radial-gradient(#bfdbfe 1.6px, transparent 1.6px)",
+            backgroundSize: "13px 13px",
+          }}
+        />
+        <div className="absolute -left-24 bottom-0 w-[380px] h-[380px] rounded-full bg-blue-100/30 blur-3xl" />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
         {/* Left Image */}
         <div className="flex justify-center">
-          <img
-            src={faqImg}
-            alt="QR Code concept"
-            className="w-[75%] mx-auto"
-          />
+          <img src={faqImg} alt="QR Code concept" className="w-[75%] mx-auto" />
         </div>
 
         {/* FAQ */}
-        <div className="space-y-4">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.25)] divide-y divide-slate-100 overflow-hidden">
           {faqData.map((item, index) => (
             <AccordionItem
               key={index}

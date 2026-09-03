@@ -1,17 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Utensils,
-  Dumbbell,
-  Package,
-  Heart,
-  ShoppingCart,
-  Gamepad2,
-} from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import ScreenView from "../../layouts/ScreenView";
-import PageHeader from "../../components/PageHeader";
-import Footer from "../../common/footer/Footer";
+import SectionHeading from "../../components/ui/SectionHeading";
 
 import airlines from "../../assets/images/qrbusiness/airlines.webp";
 import beverage from "../../assets/images/qrbusiness/beverage.webp";
@@ -267,52 +259,98 @@ export default function BusinessPage() {
   return (
     <>
       <ScreenView>
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center"
-        >
-          <PageHeader
-            title="QR Codes for your Business"
-            date="Discover how companies similar to yours use QR codes strategically"
-            showBtn={false}
-          />
-        </motion.div>
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-          <div className="max-w-6xl mx-auto px-6 py-16">
-            {/* Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] via-[#f7faff] to-white">
+          {/* ── Decorative background (same language as the home hero) ── */}
+          <div className="pointer-events-none absolute inset-0 h-[480px] overflow-hidden">
+            <div className="absolute -left-32 -top-16 w-[460px] h-[460px] rounded-full bg-blue-200/30 blur-3xl" />
+            <div className="absolute -right-28 top-0 w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-3xl" />
+            <div
+              className="hidden md:block absolute left-6 top-24 w-28 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+            <div
+              className="hidden md:block absolute right-8 top-20 w-32 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+          </div>
+
+          <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-20">
+            {/* ── Heading ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <SectionHeading
+                title="QR Codes for your Business"
+                highlight="your Business"
+                subHeading="Discover how companies similar to yours use QR codes strategically."
+                titleClassName="text-3xl md:text-[42px] leading-[1.15] max-w-4xl"
+              />
+            </motion.div>
+
+            {/* ── Cards Grid ── */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14">
               {categories.map((cat, i) => {
                 const { Icon } = cat;
                 return (
                   <motion.div
                     key={cat.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.08 }}
-                    whileHover={{ y: -3 }}
+                    // Per-card scroll reveal, staggered across each row of 3 —
+                    // keeps long grids animating as you scroll instead of
+                    // queueing one huge delay chain up front.
+                    initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{
+                      delay: (i % 3) * 0.08,
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    whileHover={{ y: -6 }}
                     onClick={() =>
                       navigate(`/resources/industry/${cat.category}`)
                     }
-                    className="bg-white overflow-hidden cursor-pointer border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 rounded-xl"
+                    className="group bg-white overflow-hidden cursor-pointer border border-slate-200 rounded-2xl shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-blue-200 hover:shadow-[0_24px_50px_-28px_rgba(37,99,235,0.45)] transition-[box-shadow,border-color] duration-300"
                   >
                     {/* Image */}
-                    <div className="h-auto overflow-hidden">
+                    <div
+                      className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] to-[#f8fbff]"
+                      style={{ aspectRatio: "4/3" }}
+                    >
                       <img
                         src={cat.img}
                         alt={cat.label}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                       />
+                      {/* subtle tint on hover */}
+                      <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/10 transition-colors duration-300" />
                     </div>
 
                     {/* Label row */}
-                    <div className="px-4 py-3.5 flex items-center gap-3 border-t border-gray-100">
-                      {/* <Icon size={18} className="text-gray-400 shrink-0" /> */}
-                      <img src={Icon} className="w-[50px] h-[50px]" />
-                      <span className="text-gray-800 font-semibold text-sm">
+                    <div className="px-4 py-3.5 flex items-center gap-3 border-t border-slate-100">
+                      <span className="w-11 h-11 shrink-0 rounded-xl border border-slate-200 bg-white flex items-center justify-center group-hover:border-blue-200 group-hover:bg-blue-50 transition-colors duration-300">
+                        <img
+                          src={Icon}
+                          alt=""
+                          className="w-7 h-7 object-contain"
+                        />
+                      </span>
+                      <span className="text-slate-800 font-semibold text-sm group-hover:text-blue-600 transition-colors duration-200">
                         {cat.label}
                       </span>
+                      <ArrowUpRight
+                        size={16}
+                        className="ml-auto shrink-0 text-blue-600 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                      />
                     </div>
                   </motion.div>
                 );

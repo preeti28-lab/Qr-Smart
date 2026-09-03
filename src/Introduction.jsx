@@ -50,8 +50,34 @@ const Introduction = () => {
   return (
     <>
       <div className="">
-        <div className=" bg-custom-gradient " style={{}}>
-          <div className="flex flex-col  w-full container mx-auto pt-10 md:py-12 gap-y-5">
+        <div className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] via-[#f7faff] to-white">
+          {/* ── Decorative background ── */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            {/* soft blobs */}
+            <div className="absolute -left-32 -top-16 w-[460px] h-[460px] rounded-full bg-blue-200/30 blur-3xl" />
+            <div className="absolute -right-28 top-0 w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-3xl" />
+            <div className="absolute left-10 top-1/3 w-[280px] h-[280px] rounded-full bg-indigo-100/40 blur-3xl" />
+
+            {/* dot grids */}
+            <div
+              className="hidden md:block absolute left-6 top-24 w-28 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+            <div
+              className="hidden md:block absolute right-8 top-20 w-32 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+          </div>
+
+          <div className="relative flex flex-col  w-full container mx-auto pt-12 pb-12 md:pt-16 md:pb-14 gap-y-8">
             {/* <div className="flex flex-col justify-center w-full md:w-[50%] items-start align-middle gap-y-5 px-5">
               
 
@@ -92,7 +118,10 @@ const Introduction = () => {
             <SectionHeading
               // smallHead="QR Codes for"
               title="QR Code Generator: Create your Dynamic QR Code"
+              highlight="Dynamic QR Code"
+              titleClassName="text-3xl md:text-5xl lg:text-[52px] leading-[1.15] max-w-3xl"
               subHeading="Customize it with your color, shape and logo in 3 simple steps."
+              subHeadingClassName="md:text-[15px]"
             />
             <QRGenerate />
           </div>
@@ -262,23 +291,44 @@ const Introduction = () => {
             </div>
           </div>
         </div> */}
-        <div className="bg-[#1976d218] py-10 mb-10">
-          <div className="container mx-auto py-10 px-5">
-            <p className="text-center md:text-2xl font-semibold ">
+        <div className="relative overflow-hidden bg-gradient-to-br from-[#e8f0ff] via-[#eff5ff] to-[#e6f0fe] py-10 mb-10">
+          {/* ── Decorative background ── */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -left-24 -bottom-24 w-[420px] h-[420px] rounded-full bg-blue-200/40 blur-3xl" />
+            <div className="absolute -right-20 -top-20 w-[360px] h-[360px] rounded-full bg-sky-200/40 blur-3xl" />
+          </div>
+
+          {/* ── Floating glass icon cards ── */}
+          <div className="pointer-events-none hidden lg:flex absolute left-[6%] top-[22%] w-16 h-16 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-lg shadow-blue-100 items-center justify-center">
+            <CgQr className="text-blue-600" size={30} />
+          </div>
+          <div className="pointer-events-none hidden lg:flex absolute right-[7%] top-[38%] w-20 h-20 rounded-2xl bg-white/70 backdrop-blur-sm border border-white shadow-lg shadow-blue-100 items-center justify-center">
+            <BsGraphUpArrow className="text-blue-600" size={30} />
+          </div>
+          <div className="pointer-events-none hidden lg:flex absolute right-[13%] bottom-[10%] w-12 h-12 rounded-xl bg-white/70 backdrop-blur-sm border border-white shadow-lg shadow-blue-100 items-center justify-center">
+            <CgQr className="text-blue-500" size={22} />
+          </div>
+
+          <div className="relative container mx-auto py-10 px-5">
+            <p className="text-center text-sm md:text-base font-semibold text-slate-600">
               Its not just a qr
             </p>
-            <p className="text-[25px] md:text-[35px] text-slate-800  text-center lg:text-5xl font-bold my-6">
+            <p className="text-[26px] md:text-[38px] lg:text-[44px] leading-tight text-slate-900 text-center font-bold my-5 tracking-tight">
               Make, Personalize, and Monitor Your<br></br> QR Codes with Ease.
             </p>
-            <p className="text-center font-medium">
+            <p className="text-center text-slate-500 max-w-3xl mx-auto">
               Create original QR codes, alter them to match your brand, and use
               real-time analytics to obtain insightful data. One-stop platform
-              with<br></br> AI capabilities that eliminates the need for coding.
+              with<br className="hidden md:block"></br> AI capabilities that
+              eliminates the need for coding.
             </p>
-            <div className="flex justify-center mt-4">
-              <HoverButton onClick={() => navigate("/builder")}>
+            <div className="flex justify-center mt-7">
+              <button
+                onClick={() => navigate("/builder")}
+                className="px-7 py-3 rounded-full text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 transition-all duration-200 active:scale-95 shadow-md shadow-blue-200"
+              >
                 Get Started Now
-              </HoverButton>
+              </button>
             </div>
           </div>
         </div>

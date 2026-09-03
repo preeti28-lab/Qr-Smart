@@ -155,10 +155,12 @@ const QRView = ({
 
   return (
     <div className="relative">
-      <div className="bg-gray-100 p-5 flex items-center flex-col gap-5 rounded-lg sticky top-20">
+      <div className="bg-white p-5 flex items-center flex-col gap-5 rounded-2xl lg:border-l lg:border-slate-200 lg:rounded-none sticky top-20">
         {showHeading && <StepHeading number="3" text="Download your QR" />}
 
-        <div className="relative w-[200px] md:h-[300px]">
+        {/* p-3 padding is added on top of the 200x300 QR canvas box so the
+            framed/unframed QR keeps its exact intrinsic size inside the card. */}
+        <div className="relative w-[224px] md:h-[324px] flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-3">
           {/* ✅ containerRef on wrapper to find the SVG */}
           <div ref={containerRef} className="w-full h-full relative">
             <Frame
@@ -190,7 +192,7 @@ const QRView = ({
 
         {showBtn && (
           <button
-            className="rounded-full border-gray-500 border px-4 py-2 flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full max-w-[220px] justify-center rounded-full bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold px-5 py-3 flex items-center gap-2 shadow-md shadow-blue-200 transition-all duration-200 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
             onClick={downloadQR}
             disabled={isDownloading}
           >

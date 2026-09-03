@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 
 const QRDemoCard = ({ image, title, description  , link}) => {
   return (
-    <div className="group relative border rounded-xl p-4 bg-white overflow-hidden transition-all duration-300 hover:shadow-lg">
+    <div className="group relative border border-slate-200 rounded-2xl p-3 bg-white overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-blue-200">
 
-      <img src={image} alt={title} className="w-full rounded-xl mb-3" />
+      <img src={image} alt={title} className="w-full rounded-xl mb-4" />
 
-      <p className="font-semibold mb-2">{title}</p>
+      <p className="font-bold text-slate-900 mb-2 px-1">{title}</p>
 
-      <p className="text-sm text-gray-600 mb-6">
+      <p className="text-sm text-slate-500 leading-relaxed mb-6 px-1">
         {description}
       </p>
 

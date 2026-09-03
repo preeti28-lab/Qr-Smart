@@ -125,7 +125,7 @@ const QRTypesBar = ({ selectedType, setSelectedType }) => {
       </div>
 
       {/* ── DESKTOP: original tab bar (visible from lg+) ── */}
-      <div className="hidden lg:flex w-full items-center gap-1 flex-wrap p-1 bg-gray-100 rounded-xl border border-gray-200">
+      <div className="hidden lg:flex w-full items-center gap-1 flex-wrap px-2 pb-2 bg-transparent border-b border-slate-200">
         {/* First 6 items */}
         {firstSix.map((item) => {
           const isActive = selectedType === item.type;
@@ -133,18 +133,18 @@ const QRTypesBar = ({ selectedType, setSelectedType }) => {
             <button
               key={item.type}
               onClick={() => handleSelect(item.type)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer border-none
-                text-sm font-medium transition-all duration-150 whitespace-nowrap
+              className={`flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer
+                text-sm font-medium transition-all duration-150 whitespace-nowrap border
                 ${
                   isActive
-                    ? "bg-white text-blue-600 shadow-sm ring-1 ring-blue-200"
-                    : "bg-transparent text-gray-500 hover:bg-white hover:text-gray-800 hover:shadow-sm"
+                    ? "bg-blue-50/70 text-blue-600 border-blue-200"
+                    : "bg-transparent text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-800"
                 }`}
             >
               <span
                 className={`flex items-center justify-center w-7 h-7 rounded-md text-sm
                   transition-colors duration-150
-                  ${isActive ? "bg-blue-50" : "bg-gray-200"}`}
+                  ${isActive ? "text-blue-600" : "text-slate-400"}`}
               >
                 {item.iconSecond}
               </span>
@@ -157,17 +157,17 @@ const QRTypesBar = ({ selectedType, setSelectedType }) => {
         <div className="relative ml-auto" ref={moreButtonRef}>
           <button
             onClick={() => setPopoverOpen((prev) => !prev)}
-            className={`flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer border-none
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl cursor-pointer border
               text-sm font-medium transition-all duration-150 whitespace-nowrap
               ${
                 isMoreActive || popoverOpen
-                  ? "bg-white text-blue-600 shadow-sm ring-1 ring-blue-200"
-                  : "bg-transparent text-gray-500 hover:bg-white hover:text-gray-800 hover:shadow-sm"
+                  ? "bg-blue-50/70 text-blue-600 border-blue-200"
+                  : "bg-transparent text-slate-500 border-transparent hover:bg-slate-50 hover:text-slate-800"
               }`}
           >
             <span
               className={`flex items-center justify-center w-7 h-7 rounded-md transition-colors duration-150
-                ${isMoreActive || popoverOpen ? "bg-blue-50" : "bg-gray-200"}`}
+                ${isMoreActive || popoverOpen ? "text-blue-600" : "text-slate-400"}`}
             >
               <FaEllipsisH size={14} />
             </span>

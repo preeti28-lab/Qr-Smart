@@ -296,12 +296,12 @@ const QRGenerate = () => {
   };
 
   return (
-    <div className="w-full p-3 max-w-[92%] xl:max-w-6xl mx-5 md:mx-auto bg-gray-200 rounded-lg flex flex-col">
+    <div className="w-full p-3 md:p-4 max-w-[92%] xl:max-w-6xl mx-5 md:mx-auto bg-white border border-slate-200/80 rounded-3xl shadow-[0_20px_60px_-20px_rgba(37,99,235,0.18)] flex flex-col">
       <QRTypesBar
         selectedType={selectedType}
         setSelectedType={setSelectedType}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-[34rem_290px] xl:grid-cols-[68%_30%] gap-3 mt-3 bg-white p-3 rounded-lg">
+      <div className="grid grid-cols-1 lg:grid-cols-[34rem_290px] xl:grid-cols-[68%_30%] gap-3 mt-3 bg-white p-0 rounded-lg">
         <div className="p-1 md:p-6">
           <QRForm selectedType={selectedType} sharedProps={sharedProps} />
           {!blockedArr.includes(selectedType) && (

@@ -169,40 +169,45 @@ const Login = () => {
     }
   };
 
+  // Every vertical dimension below is viewport-height fluid (clamp + vh) so the
+  // whole card shrinks to fit instead of overflowing — the page never scrolls.
   const shell = (hasError) =>
-    `flex items-center gap-3 rounded-xl border bg-white p-2.5 transition-colors focus-within:border-blue-300 focus-within:ring-2 focus-within:ring-blue-100 ${
+    `flex items-center gap-3 rounded-xl border bg-white p-[clamp(6px,1.05vh,10px)] transition-colors focus-within:border-blue-300 focus-within:ring-2 focus-within:ring-blue-100 ${
       hasError ? "border-rose-300" : "border-slate-200"
     }`;
 
   return (
     <>
-      <div className="flex h-screen w-full items-center justify-center overflow-hidden bg-[#eef2f9] p-3 md:p-6">
+      {/* h-screen + overflow-hidden: the page itself never scrolls. Everything
+          inside is sized in vh-based clamps so it shrinks to fit at any zoom
+          level instead of being clipped. */}
+      <div className="flex h-screen [height:100dvh] w-full items-center justify-center overflow-hidden bg-[#eef2f9] p-[clamp(8px,1.6vh,24px)]">
         <div className="grid max-h-full w-full max-w-6xl overflow-hidden rounded-3xl bg-white shadow-[0_30px_70px_-40px_rgba(15,23,42,0.5)] lg:grid-cols-2">
           {/* ── Left: brand panel ── */}
-          <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-[#f7f9ff] via-[#f4f6fd] to-[#eceafb] p-10 lg:flex">
+          <div className="relative hidden min-h-0 flex-col justify-between overflow-hidden bg-gradient-to-br from-[#f7f9ff] via-[#f4f6fd] to-[#eceafb] p-[clamp(16px,3.2vh,40px)] lg:flex">
             <HeroWaves />
             <div className="pointer-events-none absolute -bottom-24 -right-16 h-[340px] w-[340px] rounded-full bg-violet-200/40 blur-3xl" />
 
-            <Link to="/" className="relative">
-              <span className="qr-logo text-3xl font-black uppercase tracking-tight text-slate-900">
+            <Link to="/" className="relative shrink-0">
+              <span className="qr-logo text-[clamp(20px,3.4vh,30px)] font-black uppercase tracking-tight text-slate-900">
                 QR<span className="qr-logo pl-1 text-[#1578bc]">Smart</span>
               </span>
             </Link>
 
-            <div className="relative flex flex-1 items-center justify-center py-8">
+            <div className="relative flex min-h-0 flex-1 items-center justify-center py-[clamp(8px,2vh,32px)]">
               <img
                 src="/logo.png"
                 alt="QR Smart"
-                className="w-[74%] select-none object-contain"
+                className="max-h-full w-[74%] select-none object-contain"
                 draggable="false"
               />
             </div>
 
-            <div className="relative">
-              <h2 className="text-[30px] font-bold leading-tight text-slate-900">
+            <div className="relative shrink-0">
+              <h2 className="text-[clamp(20px,3.4vh,30px)] font-bold leading-tight text-slate-900">
                 Smart <span className="text-blue-600">QR</span> Solutions
               </h2>
-              <p className="mt-2 max-w-sm text-[14px] leading-relaxed text-slate-500">
+              <p className="mt-[clamp(2px,0.8vh,8px)] max-w-sm text-[clamp(11px,1.6vh,14px)] leading-relaxed text-slate-500">
                 Generate, manage and track QR codes with ease and efficiency.
               </p>
             </div>
@@ -210,10 +215,10 @@ const Login = () => {
 
           {/* ── Right: form panel ── */}
           <div className="flex min-h-0 flex-col bg-white">
-            <div className="flex flex-1 flex-col justify-center px-6 py-4 md:px-10 md:py-6">
+            <div className="flex min-h-0 flex-1 flex-col justify-center px-6 py-[clamp(12px,2.6vh,40px)] md:px-10">
               {/* mobile brand */}
-              <Link to="/" className="mb-4 inline-block lg:hidden">
-                <span className="qr-logo text-2xl font-black uppercase tracking-tight text-slate-900">
+              <Link to="/" className="mb-[clamp(6px,1.6vh,16px)] inline-block lg:hidden">
+                <span className="qr-logo text-[clamp(18px,3vh,24px)] font-black uppercase tracking-tight text-slate-900">
                   QR<span className="qr-logo pl-1 text-[#1578bc]">Smart</span>
                 </span>
               </Link>
@@ -222,16 +227,16 @@ const Login = () => {
                 Welcome back! 👋
               </span> */}
 
-              <h1 className="mt-3 text-[26px] font-bold text-slate-900 md:text-[30px]">
+              <h1 className="text-[clamp(19px,3.3vh,30px)] font-bold text-slate-900">
                 Log in to your account
               </h1>
-              <p className="mt-2 text-[14.5px] text-slate-500">
+              <p className="mt-[clamp(2px,0.8vh,8px)] text-[clamp(11px,1.6vh,14.5px)] text-slate-500">
                 Enter with your networks or complete your data
               </p>
 
               <form
                 onSubmit={handleSubmit(loginHandler)}
-                className="mt-4 flex w-full flex-col"
+                className="mt-[clamp(8px,1.8vh,18px)] flex w-full flex-col"
               >
                 {/* Email */}
                 <Controller
@@ -239,20 +244,20 @@ const Login = () => {
                   control={control}
                   render={({ field }) => (
                     <div className={shell(errors?.email)}>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
+                      <span className="flex h-[clamp(30px,4.3vh,40px)] w-[clamp(30px,4.3vh,40px)] shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
                         <FiMail size={18} />
                       </span>
                       <input
                         {...field}
                         type="email"
                         placeholder="Enter your email here..."
-                        className="w-full bg-transparent pr-2 text-[14.5px] text-slate-800 outline-none placeholder:text-slate-400"
+                        className="w-full bg-transparent pr-2 text-[clamp(12px,1.7vh,14.5px)] text-slate-800 outline-none placeholder:text-slate-400"
                       />
                     </div>
                   )}
                 />
                 {errors?.email?.message && (
-                  <p className="mt-1.5 text-[13px] text-rose-600">
+                  <p className="mt-1 text-[clamp(10px,1.4vh,13px)] text-rose-600">
                     {errors.email.message}
                   </p>
                 )}
@@ -262,8 +267,10 @@ const Login = () => {
                   name="password"
                   control={control}
                   render={({ field }) => (
-                    <div className={`mt-4 ${shell(errors?.password)}`}>
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
+                    <div
+                      className={`mt-[clamp(8px,1.8vh,16px)] ${shell(errors?.password)}`}
+                    >
+                      <span className="flex h-[clamp(30px,4.3vh,40px)] w-[clamp(30px,4.3vh,40px)] shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white">
                         <FiLock size={18} />
                       </span>
                       <input
@@ -290,18 +297,18 @@ const Login = () => {
                   )}
                 />
                 {errors?.password?.message && (
-                  <p className="mt-1.5 text-[13px] text-rose-600">
+                  <p className="mt-1 text-[clamp(10px,1.4vh,13px)] text-rose-600">
                     {errors.password.message}
                   </p>
                 )}
 
                 {/* Remember / forgot */}
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                <div className="mt-[clamp(6px,1.4vh,12px)] flex flex-wrap items-center justify-between gap-3">
 
                   <button
                     type="button"
                     onClick={() => setIsForgotModalOpen(true)}
-                    className="text-[14px] font-medium text-blue-600 transition-colors hover:text-blue-700"
+                    className="text-[clamp(11px,1.6vh,14px)] font-medium text-blue-600 transition-colors hover:text-blue-700"
                   >
                     Forgot password?
                   </button>
@@ -310,23 +317,23 @@ const Login = () => {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] px-6 py-3 text-[15px] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(37,99,235,0.8)] transition-opacity hover:opacity-95"
+                  className="mt-[clamp(8px,1.8vh,16px)] flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#2563eb] to-[#1d4ed8] px-6 py-[clamp(7px,1.4vh,12px)] text-[clamp(12px,1.8vh,15px)] font-semibold text-white shadow-[0_12px_28px_-12px_rgba(37,99,235,0.8)] transition-opacity hover:opacity-95"
                 >
                   <span className="flex-1 text-center">Log In</span>
                   <FiArrowRight size={18} />
                 </button>
 
                 {/* Divider */}
-                <div className="my-4 flex w-full items-center gap-x-4">
+                <div className="my-[clamp(8px,1.8vh,16px)] flex w-full items-center gap-x-4">
                   <div className="h-px w-full bg-slate-200" />
-                  <span className="rounded-full border border-slate-200 px-3 py-1 text-[12px] font-medium text-slate-500">
+                  <span className="rounded-full border border-slate-200 px-3 py-1 text-[clamp(10px,1.4vh,12px)] font-medium text-slate-500">
                     OR
                   </span>
                   <div className="h-px w-full bg-slate-200" />
                 </div>
 
                 {/* Social */}
-                <div className="flex justify-center flex-col mt-3 gap-y-4 sm:flex-row w-full gap-x-3 items-center">
+                <div className="flex justify-center flex-col mt-[clamp(4px,1.2vh,12px)] gap-y-3 sm:flex-row w-full gap-x-3 items-center">
                   <GoogleOAuthProvider clientId="496475122024-lfk0n5e02vtkf34ki12ahvjd0bijo005.apps.googleusercontent.com">
                     <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
                   </GoogleOAuthProvider>
@@ -335,7 +342,7 @@ const Login = () => {
                     onResolve={(response) => console.log(response)}
                     onReject={(error) => console.log(error)}
                   >
-                    <div className="bg-[#3b5999] border cursor-pointer border-[#dadce0] min-h-[39px] rounded-[3px] flex justify-center w-full sm:w-auto items-center gap-x-2 text-blue-700 p-1">
+                    <div className="bg-[#3b5999] border cursor-pointer border-[#dadce0] min-h-[clamp(32px,4.3vh,39px)] rounded-[3px] flex justify-center w-full sm:w-auto items-center gap-x-2 text-blue-700 px-2 py-1">
                       <MdOutlineFacebook size={20} color="white" />
                       <span
                         className="text-white text-[14px]"
@@ -348,7 +355,7 @@ const Login = () => {
                 </div>
 
                 {/* Register */}
-                <p className="mt-4 text-center text-[14px] text-slate-600">
+                <p className="mt-[clamp(8px,1.8vh,16px)] text-center text-[clamp(11px,1.6vh,14px)] text-slate-600">
                   Don't have an account?{" "}
                   <button
                     type="button"
@@ -362,24 +369,24 @@ const Login = () => {
             </div>
 
             {/* Footer strip */}
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 bg-slate-50/70 px-6 py-3 md:px-10">
+            <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-slate-100 bg-slate-50/70 px-6 py-[clamp(6px,1.4vh,12px)] md:px-10">
               <div className="flex items-center gap-2.5">
                 <FiShield size={20} className="shrink-0 text-slate-400" />
                 <div>
-                  <p className="text-[13px] font-semibold text-slate-700">
+                  <p className="text-[clamp(11px,1.5vh,13px)] font-semibold text-slate-700">
                     Secure Login
                   </p>
-                  <p className="text-[12.5px] text-slate-400">
+                  <p className="text-[clamp(10px,1.4vh,12.5px)] text-slate-400">
                     Your data is 100% protected
                   </p>
                 </div>
               </div>
 
               <div className="text-right">
-                <p className="text-[13px] font-medium text-slate-500">
+                <p className="text-[clamp(11px,1.5vh,13px)] font-medium text-slate-500">
                   {currentYear} © QRSMART
                 </p>
-                <p className="text-[12.5px] text-slate-400">
+                <p className="text-[clamp(10px,1.4vh,12.5px)] text-slate-400">
                   All rights reserved.
                 </p>
               </div>

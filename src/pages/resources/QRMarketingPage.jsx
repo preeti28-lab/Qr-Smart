@@ -269,55 +269,59 @@ function Card({ cat, index }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20px" }}
+      // Per-card scroll reveal, staggered across each row of 3.
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{
-        delay: (index % 3) * 0.06,
-        duration: 0.48,
+        delay: (index % 3) * 0.08,
+        duration: 0.5,
         ease: [0.22, 1, 0.36, 1],
       }}
+      whileHover={{ y: -6 }}
       onClick={() => navigate(`/resources/qr-on/${cat.id}`)}
-      className="group cursor-pointer"
+      className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] hover:border-blue-200 hover:shadow-[0_24px_50px_-28px_rgba(37,99,235,0.45)] transition-[box-shadow,border-color] duration-300"
     >
       {/* ── Image ── */}
       <div
-        className="relative overflow-hidden rounded-t-2xl"
-        style={{ aspectRatio: "4/3", background: "#f0f2f5" }}
+        className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] to-[#f8fbff]"
+        style={{ aspectRatio: "4/3" }}
       >
         <img
           src={cat.img}
           alt={cat.label}
-          className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+          className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
         />
         {/* hover overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/12 transition-colors duration-400" />
+        <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/10 transition-colors duration-300" />
 
         {/* explore pill — appears on hover */}
-        <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-sm opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-          <span className="text-[11px] font-semibold text-gray-700">
-            Explore
-          </span>
-          <ArrowUpRight size={11} className="text-blue-600" />
+        <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm opacity-0 translate-y-1.5 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <span className="text-[11px] font-bold text-slate-700">Explore</span>
+          <ArrowUpRight size={12} className="text-blue-600" />
         </div>
       </div>
 
-      {/* ── Label row — exact screenshot match ── */}
-      <div className="flex items-center gap-3 bg-white p-5 rounded-b-2xl border border-gray-200 shadow-sm">
-        {/* icon box: white bg, gray border, small QR icon — exactly like screenshot */}
-        <div className="w-[50px] h-[50px] p-2.5 rounded-lg border border-gray-200 bg-white flex items-center justify-center shrink-0 shadow-[0_1px_3px_rgba(0,0,0,0.06)] group-hover:border-blue-200 group-hover:bg-blue-50 transition-all duration-250">
+      {/* ── Label row ── */}
+      <div className="flex items-center gap-3 bg-white px-4 py-4 border-t border-slate-100">
+        <span className="w-11 h-11 p-2.5 rounded-xl border border-slate-200 bg-white flex items-center justify-center shrink-0 group-hover:border-blue-200 group-hover:bg-blue-50 transition-colors duration-300">
           <img
             src={cat.iconLink}
             alt=""
-            className="w-[36px] h-auto object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-250"
+            className="w-full h-auto object-contain opacity-50 group-hover:opacity-80 transition-opacity duration-300"
             style={{ filter: "grayscale(1)" }}
           />
-        </div>
+        </span>
 
         {/* label text */}
-        <span className="text-gray-800 font-semibold text-[20px] leading-snug group-hover:text-blue-600 transition-colors duration-200">
+        <span className="text-slate-800 font-bold text-[15px] leading-snug group-hover:text-blue-600 transition-colors duration-200">
           {cat.label}
         </span>
+
+        <ArrowUpRight
+          size={16}
+          className="ml-auto shrink-0 text-blue-600 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+        />
       </div>
     </motion.div>
   );
@@ -332,9 +336,42 @@ export default function QRMarketingPage() {
   return (
     <>
       <ScreenView>
-        <div className="min-h-screen bg-white">
+        <div className="relative overflow-hidden bg-gradient-to-b from-[#eef4ff] via-[#f7faff] to-white">
+          {/* ── Decorative background (same language as the home hero) ── */}
+          <div className="pointer-events-none absolute inset-0 h-[440px] overflow-hidden">
+            <div className="absolute -left-32 -top-16 w-[460px] h-[460px] rounded-full bg-blue-200/30 blur-3xl" />
+            <div className="absolute -right-28 top-0 w-[420px] h-[420px] rounded-full bg-sky-200/30 blur-3xl" />
+            <div
+              className="hidden md:block absolute left-6 top-20 w-28 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+            <div
+              className="hidden md:block absolute right-8 top-16 w-32 h-28 opacity-50"
+              style={{
+                backgroundImage:
+                  "radial-gradient(#93c5fd 1.6px, transparent 1.6px)",
+                backgroundSize: "13px 13px",
+              }}
+            />
+          </div>
+
           {/* ── HEADER ────────────────────────────────────────────── */}
-          <div className="text-center pt-14 pb-12 px-6">
+          <div className="relative text-center pt-16 pb-4 px-6">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="inline-flex items-center gap-3 mb-4 text-blue-600 font-semibold text-sm"
+            >
+              <span className="h-px w-8 bg-blue-300" />
+              QR Codes on
+              <span className="h-px w-8 bg-blue-300" />
+            </motion.span>
+
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -343,23 +380,24 @@ export default function QRMarketingPage() {
                 duration: 0.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 mb-3 leading-tight tracking-tight"
+              className="text-3xl md:text-[42px] font-bold text-slate-900 mb-3 leading-[1.15] tracking-tight"
             >
-              Uses of QR codes Marketing
+              Uses of QR codes{" "}
+              <span className="text-blue-600">Marketing</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.16 }}
-              className="text-gray-400 text-base sm:text-lg max-w-md mx-auto leading-relaxed"
+              className="text-slate-500 text-base max-w-xl mx-auto leading-relaxed"
             >
               Discover how to use QR codes to boost your marketing strategy.
             </motion.p>
           </div>
 
           {/* ── GRID ──────────────────────────────────────────────── */}
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24">
             <div className="grid  md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
               {categories.map((cat, i) => (
                 <Card key={cat.id} cat={cat} index={i} />
