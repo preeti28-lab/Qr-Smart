@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { sections } from "./InternalApidocdata";
+import { sections } from "./Internalapidocdata";
 import { getSectionTheme } from "./apiSectionTheme";
 
 const InternalAPISidebar = ({ activeId, onSelect }) => {

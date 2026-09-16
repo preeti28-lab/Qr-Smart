@@ -77,7 +77,7 @@ import PurchaseSuccess from "../pages/payments/PurchaseSuccess";
 import UserProfile from "../pages/profile/UserProfile";
 import Query from "../pages/Query";
 import APIDoc from "../pages/apiDoc/APIDoc";
-import VCardQRGenerator from "../pages/VCardQRGenerator.JSX";
+import VCardQRGenerator from "../pages/VCardQRGenerator.jsx";
 import QRScanPage from "../pages/scan/QRScanPage";
 import InternalAPIDoc from "../pages/internalApiDoc/InternalAPIDoc";
 

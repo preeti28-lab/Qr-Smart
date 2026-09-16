@@ -15,11 +15,11 @@ import Stepper from "../../../components/ui/Stepper";
 import TemplateSelector from "../vCardPlus/TemplateSelection";
 import OfferInfo from "./OfferInfo";
 
-import pdfTemplate0 from "../../../assets/templates/pdf/pdfTemplate0.webp";
-import pdfTemplate1 from "../../../assets/templates/pdf/pdfTemplate1.webp";
-import pdfTemplate2 from "../../../assets/templates/pdf/pdfTemplate2.webp";
-import pdfTemplate3 from "../../../assets/templates/pdf/pdfTemplate3.webp";
-import pdfTemplate4 from "../../../assets/templates/pdf/pdfTemplate4.webp";
+import pdfTemplate0 from "../../../assets/templates/pdf/pdftemplate0.webp";
+import pdfTemplate1 from "../../../assets/templates/pdf/pdftemplate1.webp";
+import pdfTemplate2 from "../../../assets/templates/pdf/pdftemplate2.webp";
+import pdfTemplate3 from "../../../assets/templates/pdf/pdftemplate3.webp";
+import pdfTemplate4 from "../../../assets/templates/pdf/pdftemplate4.webp";
 
 import { useDispatch } from "react-redux";
 import {

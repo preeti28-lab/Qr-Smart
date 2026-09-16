@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { contentMap, API_BASE_URL } from "./InternalApidocdata";
+import { contentMap, API_BASE_URL } from "./Internalapidocdata";
 import CodeBlock from "../apiDoc/CodeBlock";
 import { getThemeByItemId } from "./apiSectionTheme";
 

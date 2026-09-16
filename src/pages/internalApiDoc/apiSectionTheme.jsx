@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 import { MdQrCode2 } from "react-icons/md";
 import { FaPuzzlePiece } from "react-icons/fa";
-import { sections } from "./InternalApidocdata";
+import { sections } from "./Internalapidocdata";
 
 /**
  * Har sidebar section ka colour + icon (sirf presentation).
